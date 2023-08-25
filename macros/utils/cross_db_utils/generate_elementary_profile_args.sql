@@ -73,6 +73,8 @@
     _parameter("type", target.type),
     _parameter("path", target.path),
     _parameter("threads", target.threads),
+    _parameter("dbname", elementary_database),
+    _parameter("schema", elementary_schema),
   ]) %}
 {% endmacro %}
 
