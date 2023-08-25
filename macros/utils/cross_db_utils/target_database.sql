@@ -7,6 +7,10 @@
     {% do return(target.dbname) %}
 {% endmacro %}
 
+{% macro duckdb__target_database() %}
+    {% do return(target.database) %}
+{% endmacro %}
+
 {% macro spark__target_database() %}
     {% do return(target.catalog or none) %}
 {% endmacro %}
