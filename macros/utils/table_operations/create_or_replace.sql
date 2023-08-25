@@ -28,5 +28,5 @@
 
 {% macro duckdb__create_or_replace(temporary, relation, sql_query) %}
     {% do dbt.drop_relation_if_exists(relation) %}
-    {% do elementary.run_query(dbt.create_table_as("true", relation, sql_query)) %}
+    {% do elementary.run_query(dbt.create_table_as(temporary, relation, sql_query)) %}
 {% endmacro %}
