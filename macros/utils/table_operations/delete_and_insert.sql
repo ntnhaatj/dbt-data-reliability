@@ -54,6 +54,23 @@
     {% do return([query]) %}
 {% endmacro %}
 
+{% macro duckdb__get_delete_and_insert_queries(relation, insert_relation, delete_relation, delete_column_key) %}
+    {% set query %}
+        -- FIXME: remove begin transaction since duckdb raise an error relates to
+        --  transaction in transaction not supported
+        {% if delete_relation %}
+            delete from {{ relation }}
+            where
+            {{ delete_column_key }} is null
+            or {{ delete_column_key }} in (select {{ delete_column_key }} from {{ delete_relation }});
+        {% endif %}
+        {% if insert_relation %}
+            insert into {{ relation }} select * from {{ insert_relation }};
+        {% endif %}
+    {% endset %}
+    {% do return([query]) %}
+{% endmacro %}
+
 {% macro spark__get_delete_and_insert_queries(relation, insert_relation, delete_relation, delete_column_key) %}
     {% set queries = [] %}
 
