@@ -12,6 +12,7 @@ def read_model_artifact_row(dbt_project: DbtProject):
 def test_artifacts_caching(dbt_project: DbtProject):
     # Disabled by default in the tests for performance reasons.
     dbt_project.dbt_runner.vars["disable_dbt_artifacts_autoupload"] = False
+    dbt_project.dbt_runner.vars["disable_run_results"] = False
 
     dbt_project.dbt_runner.run(select=TEST_MODEL, vars={"one_tags": ["hello", "world"]})
     first_row = read_model_artifact_row(dbt_project)
