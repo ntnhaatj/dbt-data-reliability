@@ -2,7 +2,7 @@
     {{ return(adapter.dispatch('merge_sql', 'elementary')(target_relation, tmp_relation, unique_key, dest_columns, incremental_predicates)) }}
 {%- endmacro %}
 
-{# Snowflake, Bigquery and Databricks #}
+{# Snowflake, Bigquery, Databricks and DuckDB #}
 {% macro default__merge_sql(target_relation, tmp_relation, unique_key, dest_columns, incremental_predicates) %}
     {% set macro = dbt.get_merge_sql %}
     {% if "incremental_predicates" in macro.get_macro().arguments %}
