@@ -51,7 +51,9 @@
     {% do return("string") %}
 {% endmacro %}
 
-
+{% macro duckdb__edr_type_string() %}
+    {% do return("varchar") %}
+{% endmacro %}
 
 {%- macro edr_type_long_string() -%}
     {{ return(adapter.dispatch('edr_type_long_string', 'elementary')()) }}

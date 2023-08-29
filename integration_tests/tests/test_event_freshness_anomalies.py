@@ -10,6 +10,10 @@ STEP = timedelta(hours=1)
 
 
 def test_anomalyless_event_freshness(test_id: str, dbt_project: DbtProject):
+    dbt_project.dbt_runner.vars["disable_run_results"] = False
+    dbt_project.dbt_runner.vars["disable_tests_results"] = False
+    dbt_project.dbt_runner.vars["disable_dbt_invocation_autoupload"] = False
+    dbt_project.dbt_runner.vars["disable_dbt_artifacts_autoupload"] = False
     data = [
         {
             EVENT_TIMESTAMP_COLUMN: date.strftime(DATE_FORMAT),

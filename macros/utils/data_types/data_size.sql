@@ -21,3 +21,7 @@
 {% macro redshift__get_column_size() %}
   {{ return(elementary.default__get_column_size()) }}
 {% endmacro %}
+
+{% macro duckdb__get_column_size() %}
+  {{ return(elementary.default__get_column_size()) }}
+{% endmacro %}
