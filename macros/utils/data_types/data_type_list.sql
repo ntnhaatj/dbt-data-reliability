@@ -21,6 +21,24 @@
 
 {% endmacro %}
 
+{% macro duckdb__data_type_list(data_type) %}
+    {% set string_list = ['VARCHAR', 'CHAR', 'BPCHAR', 'TEXT', 'STRING'] | list %}
+    {% set numeric_list = ['TINYINT', 'INT1', 'SMALLINT', 'INT2', 'SHORT', 'INTEGER', 'INT4', 'INT', 'SIGNED', 'BIGINT', 'INT8', 'LONG', 'HUGEINT', 'UTINYINT', 'USMALLINT', 'UINTEGER', 'UBIGINT', 'INT16', 'INT32', 'INT64', 'INT128', 'REAL', 'DOUBLE', 'FLOAT', 'FLOAT4', 'FLOAT8'] | list %}
+    {% set timestamp_list = ['DATE', 'DATETIME', 'TIMESTAMP', 'TIMESTAMPTZ', 'TIMESTAMP WITH TIME ZONE'] | list %}
+
+    {%- if data_type == 'string' %}
+        {{ return(string_list) }}
+    {%- elif data_type == 'numeric' %}
+        {{ return(numeric_list) }}
+    {%- elif data_type == 'timestamp' %}
+        {{ return(timestamp_list) }}
+    {%- else %}
+        {{ return([]) }}
+    {%- endif %}
+
+{% endmacro %}
+
+
 {% macro bigquery__data_type_list(data_type) %}
 
     {% set string_list = ['STRING'] | list %}
