@@ -3,7 +3,7 @@
     {{ return(adapter.dispatch('get_relation_max_name_length', 'elementary')()) }}
 {% endmacro %}
 
-{# Snowflake and BigQuery #}
+{# Snowflake and BigQuery, DuckDB #}
 {% macro default__get_relation_max_name_length(temporary, relation, sql_query) %}
     {{ return(none) }}
 {% endmacro %}
