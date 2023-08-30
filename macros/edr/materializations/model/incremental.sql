@@ -18,6 +18,17 @@
   {% do return(relations) %}
 {% endmaterialization %}
 
+{% materialization incremental, adapter="duckdb", supported_languages=["sql", "python"] %}
+  {% set relations = dbt.materialization_incremental_duckdb.call_macro() %}
+  {% if not elementary.is_elementary_enabled() %}
+    {% do return(relations) %}
+  {% endif %}
+
+  {% set metrics = elementary.query_metrics() %}
+  {% do elementary.cache_metrics(metrics) %}
+  {% do return(relations) %}
+{% endmaterialization %}
+
 {% materialization incremental, adapter="snowflake", supported_languages=["sql", "python"] %}
   {% set relations = dbt.materialization_incremental_snowflake.call_macro() %}
   {% if not elementary.is_elementary_enabled() %}

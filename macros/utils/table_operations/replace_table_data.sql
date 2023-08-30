@@ -15,6 +15,12 @@
     {% do elementary.insert_rows(relation, rows, should_commit=false, chunk_size=elementary.get_config_var('dbt_artifacts_chunk_size')) %}
 {% endmacro %}
 
+{# DuckDB - truncate and insert (non-atomic) #}
+{% macro duckdb__replace_table_data(relation, rows) %}
+    {% do dbt.truncate_relation(relation) %}
+    {% do elementary.insert_rows(relation, rows, should_commit=false, chunk_size=elementary.get_config_var('dbt_artifacts_chunk_size')) %}
+{% endmacro %}
+
 {# Spark - truncate and insert (non-atomic) #}
 {% macro spark__replace_table_data(relation, rows) %}
      {% call statement('truncate_relation') -%}
