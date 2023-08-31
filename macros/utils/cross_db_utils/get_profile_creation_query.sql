@@ -25,7 +25,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA {{ parameters["schema"] }} GRANT SELECT ON TA
 {% endmacro %}
 
 
-{# Databricks, BigQuery, Spark #}
+{# Databricks, BigQuery, Spark, DuckDB #}
 {% macro default__get_profile_creation_query(parameters) %}
   {% do exceptions.raise_compiler_error('User creation not supported through sql using ' ~ target.type) %}
 {% endmacro %}
