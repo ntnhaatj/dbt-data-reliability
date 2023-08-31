@@ -22,3 +22,7 @@
 {% macro snowflake__edr_hour_of_day_expression(date_expr) %}
     HOUR({{ date_expr }})
 {% endmacro %}
+
+{% macro duckdb__edr_hour_of_day_expression(date_expr) %}
+    EXTRACT('hour' FROM {{ date_expr }})
+{% endmacro %}

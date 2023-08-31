@@ -2,7 +2,7 @@
     {{ return(adapter.dispatch('edr_datediff', 'elementary')(first_date, second_date, date_part)) }}
 {% endmacro %}
 
-{# For Snowflake, Databricks, Redshift, Postgres & Spark #}
+{# For Snowflake, Databricks, Redshift, Postgres, Spark & DuckDB #}
 {# the dbt adapter implementation supports both timestamp and dates #}
 {% macro default__edr_datediff(first_date, second_date, date_part) %}
     {% set macro = dbt.datediff or dbt_utils.datediff %}
