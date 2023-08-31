@@ -30,3 +30,7 @@
     0 , 'Sunday'
     ) as {{ elementary.edr_type_string() }}),  cast(HOUR({{ date_expr }}) as {{ elementary.edr_type_string() }}))
 {% endmacro %}
+
+{% macro duckdb__edr_hour_of_week_expression(date_expr) %}
+    concat(cast(dayname({{ date_expr }}) as {{ elementary.edr_type_string() }}), cast(EXTRACT('hour' FROM {{ date_expr }}) as {{ elementary.edr_type_string() }}))
+{% endmacro %}

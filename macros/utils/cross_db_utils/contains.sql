@@ -2,7 +2,7 @@
     {{ adapter.dispatch('contains', 'elementary') (string, string_to_search, case_sensitive) }}
 {%- endmacro %}
 
-{# Snowflake, Databricks #}
+{# Snowflake, Databricks and DuckDB #}
 {% macro default__contains(string, string_to_search, case_sensitive) %}
     {%- if case_sensitive %}
         contains({{ string }}, '{{ string_to_search }}')
